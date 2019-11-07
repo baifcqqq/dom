@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				padding: 0;
+				margin: 0;
+			}
+			a{
+				color: white;
+				text-decoration: none;
+			}
+			.box{
+				width: 1200px;
+				height: 420px;
+				border: 1px solid black;
+				margin: 10px auto;
+				position: relative;
+			}
+			img{
+				width: 100%;
+				height: 100%;
+			}
+			.box .nav{
+				position: absolute;
+				width: 260px;
+				height: 420px;
+				background: rgba(0,0,0,0.5);
+				top:0;
+				right: 100px;
+				padding-top: 20px;
+				box-sizing: border-box;
+			}
+			.box .nav li{
+				list-style: none;
+				padding-left:20px ;
+				height: 32px;
+				line-height: 32px;
+			}
+			.box .nav li span{
+				padding: 4px 6px;
+				font-size: 8px;
+				color: white;
+				font-weight: bold;
+				background: #fd537f;
+			}
+			.box .nav li a{
+				margin-left: 8px;
+				font-size: 12px;
+				font-weight: bold;
+			}
+			.box .nav li b{
+				display: block;
+				font-size: 12px;
+				color: white;
+				display: none;
+			}
+			.box .nav .active{
+				height: 72px;
+				background: #0fabd4;
+				background: rgba(20,138,155,.2);	
+			}
+			.box .nav .active a{
+				font-size: 23px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="box">
+			<img src="img/youku/1.jpg" >
+			<ul class="nav">
+				<li class="active">
+					<span>1</span>
+					<a href="">惊蛰</a>
+					<b style="display: block;">小晚张离姐妹情断</b>
+				</li>
+				<li>
+					<span style="background: #f2a20c;">2</span>
+					<a href="">最强狂兵</a>
+					<b>兵王将计就计找出内鬼</b>
+				</li>
+				<li>
+					<span style="background: #148aff;">3</span>
+					<a href="">小小愿望</a>
+					<b>兄弟爆笑另类圆梦</b>
+				</li>
+				<li>
+					<span style="background: #2c2f32;">4</span>
+					<a href="">对白</a>
+					<b>白岩松：手机是人体外挂器官</b>
+				</li>
+				<li>
+					<span style="background: #2d4049;">5</span>
+					<a href="">蒙面唱将4</a>
+					<b>那英唱神曲，唱到五官扭曲</b>
+				</li>
+				<li>
+					<span style="background: #352d44;">6</span>
+					<a href="">头号型动态</a>
+					<b>准新娘梦辰苦练马甲线</b>
+				</li>
+				<li>
+					<span style="background: #3a304f;">7</span>
+					<a href="">双11嘉年华</a>
+					<b>集"双十一快乐",瓜分千万红包</b>
+				</li>
+			</ul>
+			
+		</div>
+		<script type="text/javascript">
+			var box = document.getElementsByClassName("box")[0];
+			var lis = box.getElementsByTagName("li");
+			var img = box.getElementsByTagName("img")[0];
+			var all_i = box.getElementsByTagName("b");
+			var temp = lis[0];
+			var temp2 = all_i[0];
+			var num = 0;
+			var timer = null;
+			
+			for (var i = 0; i < lis.length; i++) {
+				(function (i) {
+					lis[i].onmouseenter = function () {
+						clearInterval(timer);
+						fn(i);
+						num = i;
+					}
+					lis[i].onmouseleave = function () {
+						timer = setInterval(function(){
+							num++;
+							if (num > lis.length -1){
+								num = 0;
+							}
+							fn(num);
+						},3000)
+					}
+				} (i))
+			}
+			timer = setInterval(function(){
+				num++;
+				if (num > lis.length -1){
+					num = 0;
+				}
+				fn(num);
+			},3000)
+			
+			function fn(i){
+				
+				temp2.style.display = "none";
+				all_i[i].style.display = "block";
+				temp2 = all_i[i];
+				
+				temp.className = "";
+				lis[i].className = "active";
+				temp = lis[i];
+				
+				img.src = "img/youku/"+(i+1)+".jpg"
+			}
+		</script>
+	</body>
+</html>
